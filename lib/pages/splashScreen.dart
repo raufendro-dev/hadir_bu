@@ -50,7 +50,7 @@ class _SplashScreen extends State<SplashScreen> {
           PageTransition(
               type: PageTransitionType.fade,
               child: HomeScreen(
-                dataUser: pindah,
+                variabel: pindah,
               )));
     }
   }

@@ -106,7 +106,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             context,
                             PageTransition(
                                 type: PageTransitionType.fade,
-                                child: HomeScreen(dataUser: pindah)));
+                                child: HomeScreen(variabel: pindah)));
                       } else {
                         Navigator.pop(context);
                       }
