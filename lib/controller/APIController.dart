@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:hadir_bu/controller/prefsController.dart';
 import 'package:path/path.dart' as path;
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -22,9 +23,7 @@ class API {
             password: responsedata[0]['password'],
             fullname: responsedata[0]['fullname'],
             gambar: responsedata[0]['gambar'].toString().replaceAll('\/', '/'));
-        SharedPreferences prefs = await SharedPreferences.getInstance();
-        prefs.setString('user', hasil.username);
-        prefs.setString('password', hasil.password);
+        prefsController.set(username, password);
         return hasil;
       }
     } else {

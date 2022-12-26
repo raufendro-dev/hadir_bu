@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hadir_bu/controller/prefsController.dart';
 import 'package:hadir_bu/pages/homeScreen.dart';
 import 'package:hadir_bu/pages/loginScreen.dart';
 import 'package:hadir_bu/theme/textStyle.dart';
@@ -35,16 +36,12 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreen extends State<SplashScreen> {
   cek() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    await Future.delayed(const Duration(seconds: 5));
-    if (prefs.getString('user') == null &&
-        prefs.getString('password') == null) {
+    final cekprefs = await prefsController.get();
+    if (cekprefs.username == null && cekprefs.password == null) {
       Navigator.push(context,
           PageTransition(type: PageTransitionType.fade, child: LoginScreen()));
-      print("Coba");
     } else {
-      var pindah =
-          await API.login(prefs.getString('user'), prefs.getString('password'));
+      var pindah = await API.login(cekprefs.username, cekprefs.password);
       Navigator.push(
           context,
           PageTransition(
